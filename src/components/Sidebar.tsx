@@ -2,15 +2,16 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import {HomeOutlined, BarChartOutlined, SettingOutlined}  from "@ant-design/icons"
+import { TrophyOutlined, AimOutlined, TeamOutlined, ThunderboltOutlined }  from "@ant-design/icons"
 
 export default function Sidebar() {
   const pathname = usePathname()
 
   const navItems = [
-    { href: "/", icon: HomeOutlined, label: "Dashboard" },
-    { href: "/reports", icon: BarChartOutlined, label: "Reports" },
-    { href: "/settings", icon: SettingOutlined, label: "Settings" },
+    { href: "/", icon: TrophyOutlined, label: "Dashboard" },
+    { href: "/my-games", icon: AimOutlined , label: "My  Games" },
+    { href: "join-game", icon: TeamOutlined, label: "Join Game"},
+    { href: "create-game", icon: ThunderboltOutlined , label: "Create Game"},
   ]
 
   return (

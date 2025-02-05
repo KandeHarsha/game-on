@@ -7,11 +7,6 @@ import { Avatar, Dropdown, MenuProps, Select } from 'antd';
 
 
 export default function Header() {
-  const dummyOrgs = [
-    { id: "1", value: 'vadapav', label: 'Rohit' },
-    { id: "2", value: 'chockli', label: 'Kohli' },
-    { id: "4", value: 'tuktukthala', label: 'Dhoni', disabled: true },
-  ]
   const items: MenuProps['items'] = [
     {
       key: '1',
@@ -41,24 +36,15 @@ export default function Header() {
       ),
     },
   ];
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
 
   return (
     <header className="bg-slate-800 text-white p-4 shadow-md">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center">
-          <Image src="/logo.svg" alt="Logo" width={32} height={32} />
-          <span className="ml-2 text-xl font-bold text-indigo-200">BrandName</span>
-          <div className="relative ml-4">
-            <Select
-              defaultValue="vadapav"
-              style={{ width: 120 }}
-              onChange={handleChange}
-              options={dummyOrgs}
-            />
-          </div>
+          <Image src="/images/GameOnLogo.webp" alt="Logo" width={32} height={32} />
+          <span className="ml-2 text-xl font-bold text-indigo-100" style={{ fontFamily: "'Fontdiner Swanky', cursive" }}>
+            Game On
+          </span>
         </div>
 
         <div className="relative">
