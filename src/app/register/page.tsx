@@ -3,11 +3,26 @@
 import { Form, Input, Button, Card } from 'antd';
 import { UserOutlined, MailOutlined, LockOutlined } from '@ant-design/icons';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const RegistrationPage = () => {
   const [form] = Form.useForm();
-  const onFinish = (values: any) => {
+  const router = useRouter();
+
+  const onFinish = async (values: any) => {
     console.log('Received values:', values);
+    const response = await fetch("http://localhost:4000" + "/api/v1/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ Email: values.email, Password: values.password, UserName: values.username }),
+    });
+    const data = await response.json();
+    console.log("resp from frontend", data, response.status);
+    if(response.status === 200) {
+     router.push("/login") 
+    }
   };
 
   return (

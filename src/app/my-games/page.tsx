@@ -1,8 +1,9 @@
 "use client";
 
 import React from 'react';
-import { Table } from 'antd';
+import { Button, Drawer, Space, Table } from 'antd';
 import type { TableProps } from 'antd';
+import CreateGame from './createGame';
 
 interface DataType {
   id: string;
@@ -60,13 +61,45 @@ export default function MyGames() {
       dataIndex: 'time'
     },
   ];
+
+  const [showDrawer, setShowDrawer] = React.useState(false);
+
+  const handleSubmit = () => {
+
+  }
+
+  const createGameDrawer = () => {
+    return(
+      <Drawer
+      title={`Create Game`}
+      placement="right"
+      onClose={() => setShowDrawer(false)}
+      open={showDrawer}
+      extra={
+        <Space>
+          <Button onClick={() => setShowDrawer(false)}>Cancel</Button>
+          <Button type="primary" onClick={handleSubmit}>
+            OK
+          </Button>
+        </Space>
+      }
+    >
+      <CreateGame setShowDrawer={setShowDrawer} />
+    </Drawer>
+    )
+  }
   return (
     <div>
+      <div className='flex justify-between'>
       <h1 className="text-3xl font-bold mb-4 text-indigo-800">Upcoming Games</h1>
+      <Button type="primary" className="mb-4" onClick={() => setShowDrawer(true)}>Create Game</Button>
+      </div>
       <Table<DataType> columns={columns} dataSource={data} />
 
       <h1 className="text-3xl font-bold mb-4 text-indigo-800">Past Games</h1>
       <Table<DataType> columns={columns} dataSource={data} />
+
+      {createGameDrawer()}
     </div>
   )
 }
